@@ -7,15 +7,31 @@ import views.Frame;
 public class Controller{
     private Agenda agenda;
     private Frame frame;
+    private IOFileReader ioFileReader;
     public Controller(){
         agenda = new Agenda();
         frame = new Frame(this);
-        frame.UpdateInfoView(0);
+        ioFileReader = new IOFileReader(agenda);
+        try{
+            ioFileReader.readFile();
+        }catch(Exception e){
+            frame.displayMessage(e.getMessage());
+        }
+        
+        frame.UpdateInfoView(agenda.getNumberOfFriends());
         frame.setVisible(true);
     }
 
     public int getAllFriends(){
         return agenda.getNumberOfFriends();
+    }
+
+    public void writeFileOnExit(){
+        try{
+            ioFileReader.writeFile();
+        }catch(Exception e){
+            frame.displayMessage(e.getMessage());
+        } 
     }
 
     public void addNewFriend(){

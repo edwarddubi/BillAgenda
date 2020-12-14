@@ -1,6 +1,5 @@
 package views;
 
-import javax.swing.Action;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -24,12 +23,8 @@ public class Frame extends JFrame {
         this.add(infoPanel, BorderLayout.SOUTH);
         this.setSize(new Dimension(350, 270));
         this.setResizable(false);
-        
-
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setTitle("Luke's Agenda");
-
-        
-
     }
 
     public void displayMessage(String msg){
@@ -42,6 +37,11 @@ public class Frame extends JFrame {
 
     public void UpdateInfoView(int num_friends){
         infoPanel.updateFriendSize(num_friends);
+    }
+
+    public void dispose(){
+        super.dispose();
+        controller.writeFileOnExit();
     }
     
 }

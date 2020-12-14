@@ -1,0 +1,5 @@
+Number of Friends: 4
+John,    32323
+Jacob,    34343
+Michael,    90908
+Joe,  0000
